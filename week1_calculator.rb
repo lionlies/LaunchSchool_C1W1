@@ -2,34 +2,22 @@ puts "It's a tiny calulator."
 
 loop do
 
-  puts "===== please input your first number ====="
-  num1 = gets.chomp
-  if num1.to_i.to_s != num1 && num1.to_f.to_s != num1
-    loop do
-      puts "You should input a number"
-      num1 = gets.chomp
-      break if num1.to_i.to_s == num1 || num1.to_f.to_s == num1
-    end
+  begin
+    puts "===== please input your first number ====="
+    num1 = gets.chomp
+    break until num1.to_i.to_s == num1 || num1.to_f.to_s == num1
   end
 
-  puts "===== what would you like to do? (choose from +, -, *, /) ====="
-  operator = gets.chomp
-  if operator != "+" && operator != "-" && operator != "*" && operator != "/"
-    loop do
-      puts "You should choose from +, -, *, /"
-      operator = gets.chomp
-      break if operator == "+" || operator == "-" || operator == "*" || operator == "/"
-    end
+  begin
+    puts "===== what would you like to do? (choose from +, -, *, /) ====="
+    operator = gets.chomp
+    break until operator == "+" || operator == "-" || operator == "*" || operator == "/"
   end
 
-  puts "===== What's your second number? ====="
-  num2 = gets.chomp
-  if num2.to_i.to_s != num2 && num2.to_f.to_s != num2
-    loop do
-      puts "You should input a number"
-      num2 = gets.chomp
-      break if num2.to_i.to_s == num2 || num2.to_f.to_s == num2
-    end
+  begin
+    puts "===== What's your second number? ====="
+    num2 = gets.chomp
+    break until num2.to_i.to_s == num2 || num2.to_f.to_s == num2
   end
 
   case operator
