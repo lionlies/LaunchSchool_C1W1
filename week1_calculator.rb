@@ -1,3 +1,6 @@
+
+OPERATORS = ["+", "-", "*", "/"]
+
 puts "It's a tiny calulator."
 
 loop do
@@ -5,20 +8,17 @@ loop do
   begin
     puts "===== please input your first number ====="
     num1 = gets.chomp
-    break until num1.to_i.to_s == num1 || num1.to_f.to_s == num1
-  end
+  end until num1.to_i.to_s == num1 || num1.to_f.to_s == num1
 
   begin
     puts "===== what would you like to do? (choose from +, -, *, /) ====="
     operator = gets.chomp
-    break until operator == "+" || operator == "-" || operator == "*" || operator == "/"
-  end
+  end until OPERATORS.include?(operator)
 
   begin
     puts "===== What's your second number? ====="
     num2 = gets.chomp
-    break until num2.to_i.to_s == num2 || num2.to_f.to_s == num2
-  end
+  end until num2.to_i.to_s == num2 || num2.to_f.to_s == num2
 
   case operator
   when "+"
@@ -33,8 +33,7 @@ loop do
 
   puts "#{num1} #{operator} #{num2} = #{result}"
   puts "Would you like to do some more math? (y/n)"
-  calculate_again = gets.chomp
-  break if calculate_again != "y"
+  break if gets.chomp != "y"
 end
 
 # What if an user input isn't one of the four operators?
