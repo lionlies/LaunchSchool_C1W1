@@ -15,8 +15,7 @@ More:
 [v] Play again?
 [v] First player has advantage, rondomly choose the first player.
 [v] Fix the logical problem when checking winner.
-
-- two_in_a_row => How to use this method?
+- two_in_a_row
 =end
 
 WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9],
@@ -73,6 +72,15 @@ def two_in_a_row(hsh, mrkr)
   end
 end
 
+def player_first(b)
+  player_picks_square(b)
+  draw_board(b)
+end
+
+def computer_first(b)
+  computer_picks_square(b)
+  draw_board(b)
+end
 
 def game_engine
   board = initialize_board
@@ -81,30 +89,26 @@ def game_engine
 
   if first_player == "Player"
     begin
-      player_picks_square(board)
-      draw_board(board)
+      player_first(board)
       winner = check_winner(board)
       if winner || empty_positions(board).empty?
         break
       end
-      computer_picks_square(board)
-      draw_board(board)
+      computer_first(board)
       winner = check_winner(board)
     end until winner || empty_positions(board).empty?
-  # Even if I win, sometimes program still shows "Computer win."
 
   elsif first_player == "Computer"
     begin
-      computer_picks_square(board)
-      draw_board(board)
+      computer_first(board)
       winner = check_winner(board)
       if winner || empty_positions(board).empty?
         break
       end
-      player_picks_square(board)
-      draw_board(board)
+      player_first(board)
       winner = check_winner(board)
     end until winner || empty_positions(board).empty?
+
   end
 
   if winner
@@ -112,6 +116,7 @@ def game_engine
   else
     puts "It's a tie."
   end
+
 end
 
 
